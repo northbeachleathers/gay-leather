@@ -1,0 +1,104 @@
+{{ define "main" }}
+
+<!-- Hero Section -->
+<section class="hero-section py-5 py-md-7 text-center text-white position-relative overflow-hidden">
+  <div class="container-fluid position-relative z-1">
+    <h1 class="display-3 fw-900 mb-3" style="color: #d4af37; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+      BOLD LEATHER FASHION
+    </h1>
+    <p class="fs-5 mb-4 text-light-75">Premium gay leather outerwear, underwear, caps, and fetish gear</p>
+    <a href="{{ .Site.BaseURL }}shop/" class="btn btn-lg" style="background: #d4af37; color: #000; font-weight: bold; border: none;">
+      SHOP NOW →
+    </a>
+  </div>
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(255,0,0,0.05) 100%); z-index: 0;"></div>
+</section>
+
+<!-- Featured Categories -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-gold text-center fw-bold mb-5">Shop by Category</h2>
+    <div class="row g-4">
+      {{ range .Site.Data.products.categories }}
+        <div class="col-md-6 col-lg-3">
+          <a href="{{ .Site.BaseURL }}shop/{{ .slug }}/" class="text-decoration-none">
+            <div class="category-card position-relative overflow-hidden rounded-lg" style="height: 300px; background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); border: 2px solid #d4af37; cursor: pointer; transition: all 0.3s ease;">
+              <div class="position-absolute inset-0 d-flex align-items-center justify-content-center">
+                <div class="text-center text-white">
+                  <h3 class="text-gold fw-bold mb-2">{{ .title }}</h3>
+                  <p class="text-light-75">{{ .description }}</p>
+                </div>
+              </div>
+              <div class="position-absolute inset-0" style="background: rgba(212,175,55,0.1); opacity: 0; transition: opacity 0.3s ease;"></div>
+            </div>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="py-5 bg-darker">
+  <div class="container">
+    <h2 class="text-gold text-center fw-bold mb-5">Featured Products</h2>
+    <div class="row g-4">
+      {{ range first 8 .Site.Data.products.products }}
+        <div class="col-md-6 col-lg-3">
+          <div class="product-card bg-dark border border-gold-subtle rounded-lg overflow-hidden h-100 d-flex flex-column" style="transition: all 0.3s ease;">
+            <div class="position-relative overflow-hidden" style="height: 250px; background: #000;">
+              <img src="{{ .image }}" alt="{{ .title }}" class="w-100 h-100 object-fit-cover" style="object-fit: cover; transition: transform 0.3s ease;">
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge bg-gold text-dark fw-bold">{{ .category }}</span>
+              </div>
+              <div class="position-absolute bottom-0 start-0 end-0 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                <div class="rating text-gold">
+                  ⭐ {{ .rating }}
+                </div>
+              </div>
+            </div>
+            <div class="p-4 flex-grow-1 d-flex flex-column">
+              <h3 class="h5 text-white fw-bold mb-2">{{ .title }}</h3>
+              <p class="text-light-75 small flex-grow-1">{{ .description }}</p>
+              <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="h4 text-gold fw-bold mb-0">${{ .price }}</span>
+                  <button class="btn btn-sm btn-gold snipcart-add-item" 
+                    data-item-id="{{ .id }}"
+                    data-item-name="{{ .title }}"
+                    data-item-price="{{ .price }}"
+                    data-item-image="{{ .image }}"
+                    data-item-url="{{ $.Site.BaseURL }}shop/{{ .id }}/">
+                    + Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ .Site.BaseURL }}shop/" class="btn btn-lg" style="background: #d4af37; color: #000; font-weight: bold;">
+        View All Products →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5 border-top border-gold-subtle">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h2 class="text-gold text-center fw-bold mb-4">Stay Bold. Stay Leather.</h2>
+        <form class="d-flex gap-2">
+          <input type="email" class="form-control bg-dark border-gold text-white" placeholder="Your email" required>
+          <button type="submit" class="btn fw-bold" style="background: #d4af37; color: #000;">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

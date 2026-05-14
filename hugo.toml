@@ -1,0 +1,51 @@
+baseURL = "https://gay-leather.com/"
+languageCode = "en-us"
+title = "Gay Leather Fashion & Fetish Gear"
+theme = "bold-modern"
+defaultContentLanguage = "en"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[params]
+snipcartApiKey = "YOUR_PUBLIC_API_KEY_HERE"
+storeTitle = "Gay Leather Shop"
+description = "Bold modern gay leather fashion. Outerwear, underwear, caps, hats & fetish gear."
+
+[[menu.main]]
+name = "Shop"
+url = "/shop/"
+weight = 1
+
+[[menu.main]]
+name = "Outerwear"
+url = "/shop/outerwear/"
+weight = 2
+
+[[menu.main]]
+name = "Underwear"
+url = "/shop/underwear/"
+weight = 3
+
+[[menu.main]]
+name = "Caps & Hats"
+url = "/shop/caps-hats/"
+weight = 4
+
+[[menu.main]]
+name = "Fetish Gear"
+url = "/shop/fetish-gear/"
+weight = 5
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 6
+
+[[menu.main]]
+name = "Contact"
+url = "/contact/"
+weight = 7
+
+[pagination]
+pagerSize = 12

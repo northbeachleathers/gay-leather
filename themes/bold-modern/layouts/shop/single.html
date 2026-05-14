@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+{{ $productId := .Page.Params.productId | default (path.Base .Page.File.ContentDir) }}
+{{ $product := index (where .Site.Data.products.products "id" $productId) 0 }}
+
+{{ if $product }}
+  <section class="py-5">
+    <div class="container">
+      <a href="{{ .Site.BaseURL }}shop/" class="text-gold text-decoration-none mb-4 d-inline-block">← Back to Shop</a>
+      
+      <div class="row g-5">
+        <!-- Product Image -->
+        <div class="col-lg-6">
+          <div class="bg-dark rounded-lg overflow-hidden border border-gold-subtle">
+            <img src="{{ $product.image }}" alt="{{ $product.title }}" class="w-100" style="aspect-ratio: 1; object-fit: cover;">
+          </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-lg-6">
+          <span class="badge bg-gold text-dark fw-bold mb-3">{{ $product.category }}</span>
+          <h1 class="text-white fw-bold mb-3" style="font-size: 2.5rem;">{{ $product.title }}</h1>
+          
+          <!-- Rating -->
+          <div class="mb-4">
+            <div class="text-gold">
+              ⭐ {{ $product.rating }} out of 5
+            </div>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-4">
+            <span class="display-5 text-gold fw-bold">${{ $product.price }}</span>
+          </div>
+
+          <!-- Description -->
+          <p class="text-light-75 fs-5 mb-5">
+            {{ $product.description }}
+          </p>
+
+          <!-- Options -->
+          <div class="mb-5">
+            <!-- Size -->
+            <div class="mb-4">
+              <label class="text-gold fw-bold mb-2 d-block">Size</label>
+              <div class="btn-group" role="group">
+                {{ range $product.sizes }}
+                  <input type="radio" class="btn-check" name="size" id="size-{{ . }}" value="{{ . }}" {{ if eq $product.sizes 0 }}checked{{ end }}>
+                  <label class="btn btn-outline-gold" for="size-{{ . }}">{{ . }}</label>
+                {{ end }}
+              </div>
+            </div>
+
+            <!-- Color -->
+            <div class="mb-4">
+              <label class="text-gold fw-bold mb-2 d-block">Color</label>
+              <div class="btn-group" role="group">
+                {{ range $product.colors }}
+                  <input type="radio" class="btn-check" name="color" id="color-{{ . }}" value="{{ . }}" {{ if eq $product.colors 0 }}checked{{ end }}>
+                  <label class="btn btn-outline-gold" for="color-{{ . }}">{{ . }}</label>
+                {{ end }}
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-4">
+              <label class="text-gold fw-bold mb-2 d-block">Quantity</label>
+              <div class="input-group">
+                <button class="btn btn-outline-gold" type="button" onclick="document.getElementById('quantity').value = Math.max(1, parseInt(document.getElementById('quantity').value) - 1)">−</button>
+                <input type="number" class="form-control bg-dark border-gold text-gold text-center" id="quantity" value="1" min="1">
+                <button class="btn btn-outline-gold" type="button" onclick="document.getElementById('quantity').value = parseInt(document.getElementById('quantity').value) + 1">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button class="btn btn-lg w-100 fw-bold snipcart-add-item mb-3" 
+            style="background: #d4af37; color: #000; border: none; padding: 15px;"
+            data-item-id="{{ $product.id }}"
+            data-item-name="{{ $product.title }}"
+            data-item-price="{{ $product.price }}"
+            data-item-image="{{ $product.image }}"
+            data-item-url="{{ $.Site.BaseURL }}shop/{{ $product.id }}/">
+            🛒 ADD TO CART
+          </button>
+
+          <!-- Additional Info -->
+          <div class="row g-3 text-light-75">
+            <div class="col-md-6">
+              <h5 class="text-gold fw-bold">Shipping</h5>
+              <p>Free shipping on orders over $100</p>
+            </div>
+            <div class="col-md-6">
+              <h5 class="text-gold fw-bold">Returns</h5>
+              <p>30-day return policy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="py-5 border-top border-gold-subtle bg-darker">
+    <div class="container">
+      <h2 class="text-gold fw-bold mb-5">Related Products</h2>
+      <div class="row g-4">
+        {{ range first 4 (where .Site.Data.products.products "category" $product.category) }}
+          {{ if ne .id $product.id }}
+            <div class="col-md-6 col-lg-3">
+              <a href="{{ $.Site.BaseURL }}shop/{{ .id }}/" class="text-decoration-none">
+                <div class="product-card bg-dark border border-gold-subtle rounded-lg overflow-hidden h-100 d-flex flex-column">
+                  <div class="position-relative overflow-hidden" style="height: 200px; background: #000;">
+                    <img src="{{ .image }}" alt="{{ .title }}" class="w-100 h-100" style="object-fit: cover;">
+                  </div>
+                  <div class="p-3 flex-grow-1 d-flex flex-column">
+                    <h4 class="h6 text-white fw-bold mb-2">{{ .title }}</h4>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="text-gold fw-bold">${{ .price }}</span>
+                      <button class="btn btn-sm btn-gold snipcart-add-item" 
+                        data-item-id="{{ .id }}"
+                        data-item-name="{{ .title }}"
+                        data-item-price="{{ .price }}"
+                        data-item-image="{{ .image }}"
+                        data-item-url="{{ $.Site.BaseURL }}shop/{{ .id }}/">
+                        Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+{{ else }}
+  <div class="container py-5 text-center">
+    <h1 class="text-light mb-3">Product not found</h1>
+    <p class="text-light-75 mb-4">Sorry, this product doesn't exist.</p>
+    <a href="{{ .Site.BaseURL }}shop/" class="btn btn-lg" style="background: #d4af37; color: #000; font-weight: bold;">
+      Back to Shop
+    </a>
+  </div>
+{{ end }}
+
+{{ end }}

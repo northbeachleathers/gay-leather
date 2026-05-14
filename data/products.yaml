@@ -1,0 +1,151 @@
+products:
+  - id: "jkt-001"
+    title: "Premium Leather Motorcycle Jacket"
+    category: "outerwear"
+    price: 349.99
+    image: "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500&h=600&fit=crop"
+    description: "Classic black leather motorcycle jacket with studs and hardware. Timeless style, bold statement."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Brown", "Burgundy"]
+    rating: 4.8
+
+  - id: "jkt-002"
+    title: "Harness-Style Leather Vest"
+    category: "outerwear"
+    price: 299.99
+    image: "https://images.unsplash.com/photo-1552821881-721ba7a68c4c?w=500&h=600&fit=crop"
+    description: "Bold harness-style vest with hardware. Perfect for clubbing and statement looks."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black"]
+    rating: 4.9
+
+  - id: "jkt-003"
+    title: "Luxury Leather Blazer"
+    category: "outerwear"
+    price: 429.99
+    image: "https://images.unsplash.com/photo-1551995881-cbf409fbf141?w=500&h=600&fit=crop"
+    description: "Sleek black leather blazer. Perfect for upscale events with edge."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Navy"]
+    rating: 4.7
+
+  - id: "uw-001"
+    title: "Premium Leather Jockstrap"
+    category: "underwear"
+    price: 89.99
+    image: "https://images.unsplash.com/photo-1516886657613-db8a1e0c5e96?w=500&h=600&fit=crop"
+    description: "Comfortable premium leather jockstrap. Bold statement piece."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Red", "White"]
+    rating: 4.6
+
+  - id: "uw-002"
+    title: "Leather Briefs"
+    category: "underwear"
+    price: 79.99
+    image: "https://images.unsplash.com/photo-1505521585348-c64bb16cbf60?w=500&h=600&fit=crop"
+    description: "Classic leather briefs with modern cut. Sleek and sexy."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Red", "Blue"]
+    rating: 4.5
+
+  - id: "uw-003"
+    title: "Harness Chest Piece"
+    category: "underwear"
+    price: 129.99
+    image: "https://images.unsplash.com/photo-1515562141207-6811bcf101ad?w=500&h=600&fit=crop"
+    description: "Bold leather harness chest piece. Statement fashion meets function."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Red"]
+    rating: 4.8
+
+  - id: "cap-001"
+    title: "Classic Leather Cap"
+    category: "caps-hats"
+    price: 69.99
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=600&fit=crop"
+    description: "Timeless black leather baseball cap. Perfect everyday statement."
+    sizes: ["One Size"]
+    colors: ["Black", "Brown", "Tan"]
+    rating: 4.7
+
+  - id: "cap-002"
+    title: "Leather Biker Cap"
+    category: "caps-hats"
+    price: 79.99
+    image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=600&fit=crop"
+    description: "Rugged leather biker cap with studs. Bold and edgy."
+    sizes: ["One Size"]
+    colors: ["Black"]
+    rating: 4.6
+
+  - id: "cap-003"
+    title: "Leather Beanie"
+    category: "caps-hats"
+    price: 59.99
+    image: "https://images.unsplash.com/photo-1540324662412-26ac5678e0a5?w=500&h=600&fit=crop"
+    description: "Soft leather beanie for cooler nights. Minimalist leather style."
+    sizes: ["One Size"]
+    colors: ["Black", "Brown", "Charcoal"]
+    rating: 4.5
+
+  - id: "fg-001"
+    title: "Leather Collar"
+    category: "fetish-gear"
+    price: 99.99
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&h=600&fit=crop"
+    description: "Premium leather collar with hardware. Bold statement piece."
+    sizes: ["S", "M", "L", "XL"]
+    colors: ["Black", "Red", "Purple"]
+    rating: 4.9
+
+  - id: "fg-002"
+    title: "Leather Cuff Set"
+    category: "fetish-gear"
+    price: 149.99
+    image: "https://images.unsplash.com/photo-1599643478583-a96e80a8b0b3?w=500&h=600&fit=crop"
+    description: "Premium leather wrist cuffs. Set of 2 with adjustable sizing."
+    sizes: ["One Size (Adjustable)"]
+    colors: ["Black", "Red"]
+    rating: 4.8
+
+  - id: "fg-003"
+    title: "Leather Harness Full Body"
+    category: "fetish-gear"
+    price: 299.99
+    image: "https://images.unsplash.com/photo-1599643478719-c51255a27c22?w=500&h=600&fit=crop"
+    description: "Bold full-body leather harness. Premium craftsmanship and design."
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"]
+    colors: ["Black", "Red"]
+    rating: 4.9
+
+  - id: "fg-004"
+    title: "Leather Mask"
+    category: "fetish-gear"
+    price: 89.99
+    image: "https://images.unsplash.com/photo-1599643478543-f2c18e07c4f9?w=500&h=600&fit=crop"
+    description: "Premium leather mask. Bold and mysterious."
+    sizes: ["One Size (Adjustable)"]
+    colors: ["Black", "Red"]
+    rating: 4.7
+
+categories:
+  - id: "outerwear"
+    title: "Outerwear"
+    description: "Premium leather jackets, vests, and blazers"
+    slug: "outerwear"
+
+  - id: "underwear"
+    title: "Underwear"
+    description: "Bold leather undergarments and harnesses"
+    slug: "underwear"
+
+  - id: "caps-hats"
+    title: "Caps & Hats"
+    description: "Leather caps, beanies, and statement hats"
+    slug: "caps-hats"
+
+  - id: "fetish-gear"
+    title: "Fetish Gear"
+    description: "Premium fetish wear and leather accessories"
+    slug: "fetish-gear"

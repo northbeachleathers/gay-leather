@@ -1,0 +1,357 @@
+/* Gay Leather Shop - Bold Modern Theme */
+
+:root {
+  --gold: #d4af37;
+  --dark: #0a0a0a;
+  --darker: #1a1a1a;
+  --light: #ffffff;
+  --light-75: rgba(255, 255, 255, 0.75);
+  --light-50: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--dark);
+  color: var(--light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Colors */
+.bg-dark {
+  background-color: var(--darker) !important;
+}
+
+.bg-darker {
+  background-color: #0a0a0a !important;
+}
+
+.bg-black {
+  background-color: #000 !important;
+}
+
+.text-gold {
+  color: var(--gold) !important;
+}
+
+.text-light-75 {
+  color: var(--light-75) !important;
+}
+
+.text-light-50 {
+  color: var(--light-50) !important;
+}
+
+.border-gold {
+  border-color: var(--gold) !important;
+}
+
+.border-gold-subtle {
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Buttons */
+.btn-gold {
+  background-color: var(--gold);
+  color: #000;
+  border: 2px solid var(--gold);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: #e5c158;
+  border-color: #e5c158;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline-gold {
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--gold);
+  color: #000;
+}
+
+.btn-outline-gold.active {
+  background-color: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 50%);
+  z-index: -1;
+}
+
+/* Form Controls */
+.form-control {
+  background-color: rgba(26, 26, 26, 1);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  color: var(--light);
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background-color: rgba(26, 26, 26, 1);
+  border-color: var(--gold);
+  color: var(--light);
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+.form-control::placeholder {
+  color: var(--light-50);
+}
+
+/* Product Cards */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 1) 0%, rgba(40, 40, 40, 1) 100%);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold) !important;
+  box-shadow: 0 12px 24px rgba(212, 175, 55, 0.2);
+}
+
+.product-card img {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Category Cards */
+.category-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-4px);
+}
+
+.category-card:hover::after {
+  opacity: 0.2;
+}
+
+/* Navbar */
+.navbar-dark {
+  background-color: var(--darker) !important;
+  border-color: var(--gold) !important;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: var(--gold) !important;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* Footer */
+footer {
+  background-color: #000 !important;
+  border-color: var(--gold) !important;
+}
+
+footer a {
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--gold) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 350px;
+  }
+
+  h1.display-3 {
+    font-size: 2rem !important;
+  }
+
+  .product-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Utilities */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.rounded-xl {
+  border-radius: 16px;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Snipcart Customization */
+.snipcart-checkout {
+  transition: all 0.3s ease;
+}
+
+.snipcart-checkout:hover {
+  background-color: var(--gold);
+  color: #000 !important;
+  border-color: var(--gold);
+}
+
+.badge {
+  padding: 6px 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.badge.bg-gold {
+  background-color: var(--gold) !important;
+  color: #000;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Dark Mode Optimizations */
+img {
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover img {
+  opacity: 1;
+}
+
+/* Input Groups */
+.input-group > * {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.input-group .btn {
+  color: var(--gold);
+}
+
+.input-group .form-control {
+  text-align: center;
+}
