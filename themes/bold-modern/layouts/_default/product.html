@@ -1,0 +1,171 @@
+{{ define "main" }}
+
+<section class="py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}" class="text-gold text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}shop/" class="text-gold text-decoration-none">Shop</a></li>
+        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}shop/{{ .Params.category }}/" class="text-gold text-decoration-none text-capitalize">{{ .Params.category | replace "-" " " }}</a></li>
+        <li class="breadcrumb-item active text-light-50" aria-current="page">{{ .Title }}</li>
+      </ol>
+    </nav>
+
+    <div class="row g-5 align-items-start">
+      <!-- Product Image -->
+      <div class="col-lg-6">
+        <div class="position-relative rounded-3 overflow-hidden" style="background: #111; aspect-ratio: 4/5;">
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" 
+               class="w-100 h-100" style="object-fit: cover;">
+          <div class="position-absolute top-0 end-0 m-3">
+            <span class="badge fs-6 px-3 py-2 text-capitalize" 
+                  style="background: #d4af37; color: #000;">{{ .Params.category | replace "-" " " }}</span>
+          </div>
+          <div class="position-absolute bottom-0 start-0 m-3">
+            <div class="fs-5 fw-bold" style="color: #d4af37;">
+              ⭐ {{ .Params.rating }} / 5.0
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold mb-3" style="color: #d4af37;">{{ .Title }}</h1>
+        <div class="display-4 fw-bold mb-4 text-white">${{ .Params.price }}</div>
+        
+        <p class="fs-5 mb-4" style="color: rgba(255,255,255,0.75); line-height: 1.7;">{{ .Params.description }}</p>
+
+        <!-- Size Selector -->
+        <div class="mb-4">
+          <label class="fw-bold mb-2 text-white d-block">Size</label>
+          <div class="d-flex flex-wrap gap-2" id="size-options">
+            {{ range .Params.sizes }}
+              <button type="button" class="btn btn-sm size-btn" 
+                      style="border: 1px solid #d4af37; color: #d4af37; background: transparent; min-width: 50px;"
+                      onclick="selectSize(this, '{{ . }}')"
+                      data-size="{{ . }}">{{ . }}</button>
+            {{ end }}
+          </div>
+          <input type="hidden" id="selected-size" value="{{ index .Params.sizes 0 }}">
+        </div>
+
+        <!-- Color Selector -->
+        <div class="mb-5">
+          <label class="fw-bold mb-2 text-white d-block">Color</label>
+          <div class="d-flex flex-wrap gap-2" id="color-options">
+            {{ range .Params.colors }}
+              <button type="button" class="btn btn-sm color-btn"
+                      style="border: 1px solid #d4af37; color: #d4af37; background: transparent;"
+                      onclick="selectColor(this, '{{ . }}')"
+                      data-color="{{ . }}">{{ . }}</button>
+            {{ end }}
+          </div>
+          <input type="hidden" id="selected-color" value="{{ index .Params.colors 0 }}">
+        </div>
+
+        <!-- Add to Cart -->
+        <button id="add-to-cart-btn"
+          class="btn w-100 py-4 fs-4 fw-bold snipcart-add-item"
+          style="background: #d4af37; color: #000; border: none; letter-spacing: 2px;"
+          data-item-id="{{ .Params.productId }}"
+          data-item-name="{{ .Title }}"
+          data-item-price="{{ .Params.price }}"
+          data-item-image="{{ .Params.image }}"
+          data-item-url="{{ .Permalink }}"
+          data-item-description="{{ .Params.description }}"
+          data-item-custom1-name="Size"
+          data-item-custom1-options="{{ delimit .Params.sizes "|" }}"
+          data-item-custom1-value="{{ index .Params.sizes 0 }}"
+          data-item-custom2-name="Color"
+          data-item-custom2-options="{{ delimit .Params.colors "|" }}"
+          data-item-custom2-value="{{ index .Params.colors 0 }}">
+          🛒 ADD TO CART
+        </button>
+
+        <!-- Trust badges -->
+        <div class="row text-center mt-4 g-3">
+          <div class="col-4">
+            <div class="p-3 rounded" style="border: 1px solid rgba(212,175,55,0.3);">
+              <div class="fs-3 mb-1">🔒</div>
+              <div class="small" style="color: rgba(255,255,255,0.6);">Secure Checkout</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 rounded" style="border: 1px solid rgba(212,175,55,0.3);">
+              <div class="fs-3 mb-1">🚚</div>
+              <div class="small" style="color: rgba(255,255,255,0.6);">Free Shipping $150+</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 rounded" style="border: 1px solid rgba(212,175,55,0.3);">
+              <div class="fs-3 mb-1">↩️</div>
+              <div class="small" style="color: rgba(255,255,255,0.6);">30-Day Returns</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="mt-6 pt-5 border-top" style="border-color: rgba(212,175,55,0.3) !important;">
+      <h2 class="h3 fw-bold mb-4" style="color: #d4af37;">More {{ .Params.category | replace "-" " " | title }}</h2>
+      <div class="row g-4">
+        {{ $currentId := .Params.productId }}
+        {{ $currentCat := .Params.category }}
+        {{ range .Site.Data.products.products }}
+          {{ if and (eq .category $currentCat) (ne .id $currentId) }}
+            <div class="col-md-4 col-lg-3">
+              <a href="{{ $.Site.BaseURL }}shop/{{ .category }}/{{ .id }}/" class="text-decoration-none">
+                <div class="rounded-3 overflow-hidden" style="border: 1px solid rgba(212,175,55,0.3); transition: border-color 0.3s;">
+                  <div style="height: 200px; overflow: hidden;">
+                    <img src="{{ .image }}" alt="{{ .title }}" class="w-100 h-100" style="object-fit: cover;">
+                  </div>
+                  <div class="p-3" style="background: #111;">
+                    <div class="fw-bold text-white mb-1">{{ .title }}</div>
+                    <div class="fw-bold" style="color: #d4af37;">${{ .price }}</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Select first size and color by default on load
+document.addEventListener('DOMContentLoaded', function() {
+  const firstSize = document.querySelector('.size-btn');
+  if (firstSize) selectSize(firstSize, firstSize.dataset.size);
+  const firstColor = document.querySelector('.color-btn');
+  if (firstColor) selectColor(firstColor, firstColor.dataset.color);
+});
+
+function selectSize(btn, size) {
+  document.querySelectorAll('.size-btn').forEach(b => {
+    b.style.background = 'transparent';
+    b.style.color = '#d4af37';
+  });
+  btn.style.background = '#d4af37';
+  btn.style.color = '#000';
+  document.getElementById('selected-size').value = size;
+  document.getElementById('add-to-cart-btn').setAttribute('data-item-custom1-value', size);
+}
+
+function selectColor(btn, color) {
+  document.querySelectorAll('.color-btn').forEach(b => {
+    b.style.background = 'transparent';
+    b.style.color = '#d4af37';
+  });
+  btn.style.background = '#d4af37';
+  btn.style.color = '#000';
+  document.getElementById('selected-color').value = color;
+  document.getElementById('add-to-cart-btn').setAttribute('data-item-custom2-value', color);
+}
+</script>
+
+{{ end }}

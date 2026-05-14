@@ -35,9 +35,14 @@
               </a>
             </li>
           {{ end }}
-          <li class="nav-item">
-            <button class="btn btn-gold snipcart-checkout ms-2" style="border: 2px solid #d4af37; color: #d4af37; background: transparent;">
+          <li class="nav-item ms-2">
+            <button class="btn snipcart-checkout position-relative fw-bold" 
+                    style="border: 2px solid #d4af37; color: #d4af37; background: transparent; padding: 8px 18px; transition: all 0.2s;"
+                    onmouseover="this.style.background='#d4af37';this.style.color='#000'"
+                    onmouseout="this.style.background='transparent';this.style.color='#d4af37'">
               🛒 Cart
+              <span class="snipcart-items-count badge rounded-pill ms-1" 
+                    style="background: #d4af37; color: #000; font-size: 0.7rem;"></span>
             </button>
           </li>
         </ul>

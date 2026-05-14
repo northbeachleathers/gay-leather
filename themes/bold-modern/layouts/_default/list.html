@@ -33,7 +33,7 @@
       {{ range .Site.Data.products.products }}
         {{ if or (not $category) (eq .category $category) }}
           <div class="col-md-6 col-lg-3">
-            <a href="{{ $.Site.BaseURL }}shop/{{ .id }}/" class="text-decoration-none">
+            <a href="{{ $.Site.BaseURL }}shop/{{ .category }}/{{ .id }}/" class="text-decoration-none">
               <div class="product-card bg-dark border border-gold-subtle rounded-lg overflow-hidden h-100 d-flex flex-column" style="transition: all 0.3s ease;">
                 <div class="position-relative overflow-hidden" style="height: 250px; background: #000;">
                   <img src="{{ .image }}" alt="{{ .title }}" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s ease;">
@@ -57,7 +57,7 @@
                         data-item-name="{{ .title }}"
                         data-item-price="{{ .price }}"
                         data-item-image="{{ .image }}"
-                        data-item-url="{{ $.Site.BaseURL }}shop/{{ .id }}/">
+                        data-item-url="{{ $.Site.BaseURL }}shop/{{ .category }}/{{ .id }}/">
                         + Cart
                       </button>
                     </div>

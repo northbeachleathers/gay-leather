@@ -4,8 +4,6 @@ title = "Gay Leather Fashion & Fetish Gear"
 theme = "bold-modern"
 defaultContentLanguage = "en"
 
-[outputs]
-home = ["HTML", "JSON"]
 
 [params]
 snipcartApiKey = "YOUR_PUBLIC_API_KEY_HERE"
