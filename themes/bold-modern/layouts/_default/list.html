@@ -15,11 +15,11 @@
     <div class="row mb-5">
       <div class="col-12">
         <div class="d-flex flex-wrap gap-2">
-          <a href="{{ .Site.BaseURL }}shop/" class="btn btn-outline-gold {{ if eq .Page.URL (.Site.BaseURL | print "shop/") }}active{{ end }}">
+          <a href="{{ .Site.BaseURL }}shop/" class="btn btn-outline-gold {{ if eq .RelPermalink "/shop/" }}active{{ end }}">
             All Products
           </a>
           {{ range .Site.Data.products.categories }}
-            <a href="{{ $.Site.BaseURL }}shop/{{ .slug }}/" class="btn btn-outline-gold {{ if in $.Page.URL .slug }}active{{ end }}">
+            <a href="{{ $.Site.BaseURL }}shop/{{ .slug }}/" class="btn btn-outline-gold {{ if in $.Page.RelPermalink .slug }}active{{ end }}">
               {{ .title }}
             </a>
           {{ end }}
